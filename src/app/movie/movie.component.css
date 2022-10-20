@@ -1,0 +1,32 @@
+.movie-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  font-size: 0.6rem;
+  width: 125px;
+  height: 300px;
+  margin: 10px;
+}
+
+.movie-card img {
+  height: 60%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#view-btn {
+  width: 60px;
+  font-size: 0.7rem;
+  height: 25px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#star-btn {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  height: 25px;
+}
+#favorite-btn {
+  height: 10px;
+}

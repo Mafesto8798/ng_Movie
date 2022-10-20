@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-evenly mb-5">
+  <input
+    type="text"
+    placeholder="Search for a movie..."
+    class="col-3-sm col-3-md inputField"
+    [(ngModel)]="userInput"
+    (change)="filterMovie()"
+  />
+  <select
+    class="col-3-sm col-3-md"
+    name="popularity"
+    class="inputField"
+    [(ngModel)]="sortMethod"
+    (change)="filterMovie()"
+  >
+    <option value="" selected>Sort by Popularity</option>
+    <option value="lowest" name="popularity">Sort by Lowest</option>
+    <option value="highest" name="popularity">Sort by Highest</option>
+  </select>
+  <select
+    class="col-3-sm"
+    name="release"
+    class="inputField"
+    [(ngModel)]="sortDateMethod"
+    (change)="filterMovie()"
+  >
+    <option value="" selected>Sort by Release Date</option>
+    <option value="oldest" name="release">Sort by Oldest</option>
+    <option value="newest" name="release">Sort by Newest</option>
+  </select>
+</div>
+<div class="movieList">
+  <app-movie *ngFor="let m of filteredMovies" [movieItem]="m"></app-movie>
+</div>

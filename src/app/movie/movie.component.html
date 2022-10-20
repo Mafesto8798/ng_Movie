@@ -1,0 +1,28 @@
+<div class="movie-card">
+  <img
+    src="https://image.tmdb.org/t/p/w500/{{ movieItem.poster_path }}"
+    alt=""
+  />
+  <span class="text-center">
+    <button
+      class="btn btn-sm btn-danger mt-1"
+      id="view-btn"
+      [routerLink]="['/movies/', movieItem.id]"
+    >
+      View
+    </button>
+    <button
+      class="btn btn-sm btn-warning mt-1"
+      id="star-btn"
+      (click)="addToFavorites()"
+    >
+      <bi name="star" id="favorite-btn"></bi>
+    </button>
+  </span>
+  <p class="text-center w-80 text-primary">
+    {{ movieItem.title }}
+  </p>
+  <p class="text-center text-primary">
+    Release Date: {{ movieItem.release_date | date }}
+  </p>
+</div>
