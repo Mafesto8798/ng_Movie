@@ -1,0 +1,34 @@
+.movie-details-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 0.6rem;
+  margin: 50px auto;
+}
+
+.movie-details-card img {
+  width: 80vw;
+}
+
+#star-btn {
+  height: 35px;
+}
+#favorite-btn {
+  height: 20px;
+  width: 100px;
+}
+
+#company-logo {
+  width: 50px;
+  margin: 20px;
+}
+
+@media (min-width: 700px) {
+  .movie-details-card {
+    font-size: 1rem;
+  }
+  #company-logo {
+    width: 150px;
+  }
+}

@@ -1,3 +1,47 @@
-<div>
-  <h1 class="text-center text-primary">{{ displayMovie.title }}</h1>
+<div class="movie-details-card">
+  <img
+    src="https://image.tmdb.org/t/p/w500/{{ displayMovie.backdrop_path }}"
+    alt="backdrop"
+  />
+  <h3 class="text-center text-primary m-4">
+    {{ displayMovie.title }}
+  </h3>
+  <span>
+    <p class="text-light text-center">
+      Budget: {{ displayMovie.budget | currency }}
+    </p>
+    <p class="text-light text-center">
+      Revenue: {{ displayMovie.revenue | currency }}
+    </p>
+    <div class="d-flex justify-content-evenly m-3">
+      <img
+        *ngFor="let c of displayMovie.production_companies"
+        src="https://image.tmdb.org/t/p/w500/{{ c.logo_path }}"
+        alt="company logo"
+        id="company-logo"
+      />
+    </div>
+  </span>
+  <span class="text-center">
+    <button
+      *ngIf="isFavorited()"
+      class="btn btn btn-warning mt-1"
+      id="star-btn"
+      (click)="removeFavorite()"
+    >
+      <bi name="star-fill" id="favorite-btn"></bi>
+    </button>
+    <button
+      *ngIf="!isFavorited()"
+      class="btn btn btn-warning mt-1"
+      id="star-btn"
+      (click)="addToFavorites()"
+    >
+      <bi name="star" id="favorite-btn"></bi>
+    </button>
+  </span>
+  <h4 class="text-center text-light mt-4">Overview</h4>
+  <p class="text-center text-light col-10 mt-2" style="line-height: 2">
+    {{ displayMovie.overview }}
+  </p>
 </div>

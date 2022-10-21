@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieDetails } from '../models/movie';
+import { FavoriteMovieService } from '../favorite-movie.service';
+import { FavoriteMovie, Movie, MovieDetails } from '../models/movie';
 import { MovieDetailService } from '../movie-detail.service';
 
 @Component({
@@ -10,9 +11,11 @@ import { MovieDetailService } from '../movie-detail.service';
 })
 export class MovieDetailsComponent implements OnInit {
   displayMovie: MovieDetails = {} as MovieDetails;
+  favorites: FavoriteMovie[] = [];
   constructor(
     private route: ActivatedRoute,
-    private movieDetail: MovieDetailService
+    private movieDetail: MovieDetailService,
+    private favoriteMovies: FavoriteMovieService
   ) {}
 
   ngOnInit(): void {
@@ -21,5 +24,35 @@ export class MovieDetailsComponent implements OnInit {
       console.log(res);
       this.displayMovie = res;
     });
+    this.favoriteMovies.getFavoriteMovies().subscribe((res) => {
+      this.favorites = res;
+    });
+  }
+
+  removeFavorite(): void {
+    let index: number = this.favorites.findIndex(
+      (fav) => fav.movieId == this.displayMovie.id
+    );
+    this.favoriteMovies
+      .removeFavoriteMovie(this.favorites[index]._id)
+      .subscribe((res) => {
+        this.favorites.splice(index, 1);
+      });
+  }
+
+  addToFavorites(): void {
+    let dummyMovie: Movie = {} as Movie;
+    dummyMovie.id = this.displayMovie.id;
+    this.favoriteMovies.addFavoriteMovie(dummyMovie).subscribe((res) => {
+      this.favorites.push(res);
+      console.log(this.favorites);
+    });
+  }
+
+  isFavorited(): boolean {
+    return (
+      this.favorites.findIndex((fav) => fav.movieId == this.displayMovie.id) !=
+      -1
+    );
   }
 }

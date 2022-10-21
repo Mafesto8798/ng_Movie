@@ -30,4 +30,11 @@ export class FavoritesComponent implements OnInit {
       });
     });
   }
+
+  remove(movie: Movie): void {
+    let index: number = this.favoriteMovies.findIndex(
+      (mov) => mov.id == movie.id
+    );
+    this.favoriteMovies.splice(index, 1);
+  }
 }

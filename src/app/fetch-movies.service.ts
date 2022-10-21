@@ -16,8 +16,7 @@ export class FetchMoviesService {
 
   fetchMovies(): Observable<MovieResponse> {
     return this.http.get<MovieResponse>(
-      `
-        https://api.themoviedb.org/4/list/1/?api_key=${this.TOKEN}`
+      `https://api.themoviedb.org/4/list/1?api_key=${this.TOKEN}`
     );
   }
 

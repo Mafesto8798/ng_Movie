@@ -12,7 +12,16 @@
       View
     </button>
     <button
-      class="btn btn-sm btn-warning mt-1"
+      *ngIf="isFavorited()"
+      class="btn btn btn-warning mt-1"
+      id="star-btn"
+      (click)="removeFavorite()"
+    >
+      <bi name="star-fill" id="favorite-btn"></bi>
+    </button>
+    <button
+      *ngIf="!isFavorited()"
+      class="btn btn btn-warning mt-1"
       id="star-btn"
       (click)="addToFavorites()"
     >

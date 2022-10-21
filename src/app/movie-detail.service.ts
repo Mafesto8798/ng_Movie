@@ -14,7 +14,7 @@ export class MovieDetailService {
 
   fetchMovieDetails(id: number): Observable<MovieDetails> {
     return this.http.get<MovieDetails>(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${this.TOKEN}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${this.TOKEN}`
     );
   }
 }

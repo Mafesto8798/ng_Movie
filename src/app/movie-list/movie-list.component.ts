@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FavoriteMovieService } from '../favorite-movie.service';
 import { FetchMoviesService } from '../fetch-movies.service';
-import { Movie } from '../models/movie';
+import { FavoriteMovie, Movie } from '../models/movie';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,7 +14,11 @@ export class MovieListComponent implements OnInit {
   userInput: string = '';
   sortMethod: string = '';
   sortDateMethod: string = '';
-  constructor(private fetchMovie: FetchMoviesService) {}
+  favorites: FavoriteMovie[] = [];
+  constructor(
+    private fetchMovie: FetchMoviesService,
+    private favoriteService: FavoriteMovieService
+  ) {}
 
   ngOnInit(): void {
     this.fetchMovie.fetchMovies().subscribe((res) => {
@@ -23,6 +28,9 @@ export class MovieListComponent implements OnInit {
         this.filteredMovies.push(movie);
       });
       console.log(this.movieList);
+    });
+    this.favoriteService.getFavoriteMovies().subscribe((f) => {
+      this.favorites = f;
     });
   }
 

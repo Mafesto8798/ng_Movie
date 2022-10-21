@@ -1,3 +1,8 @@
-<div class="mt-5">
-  <p class="text-center text-primary">Favorite Movie</p>
+<div class="movieList">
+  <app-movie
+    *ngFor="let m of favoriteMovies"
+    [favorites]="favorites"
+    [movieItem]="m"
+    (remove)="remove($event)"
+  ></app-movie>
 </div>

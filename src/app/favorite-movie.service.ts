@@ -20,6 +20,7 @@ export class FavoriteMovieService {
   }
 
   addFavoriteMovie(movie: Movie): Observable<FavoriteMovie> {
+    this.favoriteMovies.push(movie);
     return this.http.post<FavoriteMovie>(
       'https://favoritemovies-2cd9.restdb.io/rest/favorites',
       { movieId: movie.id },
@@ -28,6 +29,7 @@ export class FavoriteMovieService {
   }
 
   removeFavoriteMovie(id: string): Observable<FavoriteMovie> {
+    console.log(id);
     return this.http.delete<FavoriteMovie>(
       `https://favoritemovies-2cd9.restdb.io/rest/favorites/${id}`,
       { headers: { 'x-apikey': this.TOKEN } }
